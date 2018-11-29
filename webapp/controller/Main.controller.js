@@ -39,8 +39,8 @@ sap.ui.define([
 			});
 
 			return Promise.resolve(promise).then(function (result) {
-				me.groupData(result)
-				return "Bearer " + result.access_token;
+				var da = me.groupData(result);
+				me.getView().setModel(new sap.ui.model.json.JSONModel(da), "dataModel");
 			});
 		},
 
@@ -56,6 +56,7 @@ sap.ui.define([
 				});
 			};
 			console.log(parsedData);
+			return {"array":parsedData};
 		},
 
 		triggerML: function (oEvent) {

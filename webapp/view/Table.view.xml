@@ -1,5 +1,5 @@
 <mvc:View controllerName="com.flexso.HackTheFuture.controller.Main" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-	<Table id="idProductsTable" inset="false" items="">
+	<Table id="idProductsTable" inset="false" items="{dataModel>/array}">
 		<headerToolbar>
 			<Toolbar>
 				<content>
@@ -29,10 +29,10 @@
 		<items>
 			<ColumnListItem>
 				<cells>
-					<ObjectIdentifier title="105"/>
-					<Text text="69"/>
-					<Text text="21"/>
-					<Text text="fhdvhsuifhqiuvhqihviqh"/>
+					<ObjectIdentifier title="{dataModel>artifact_id}"/>
+					<Text text="{dataModel>longitude}"/>
+					<Text text="{dataModel>latitude}"/>
+					<Text text="bfjdgbjg"/>
 				</cells>
 			</ColumnListItem>
 		</items>

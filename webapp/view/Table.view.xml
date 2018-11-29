@@ -3,13 +3,13 @@
 		<headerToolbar>
 			<Toolbar>
 				<content>
-					<Title text="Products" level="H2"/>
+					<Title text="The Artifact" level="H2"/>
 				</content>
 			</Toolbar>
 		</headerToolbar>
 		<infoToolbar>
 			<Toolbar active="true">
-				<Label text="Wide range of available products"/>
+				<Label text="The hieroglyphs are unraveled"/>
 			</Toolbar>
 		</infoToolbar>
 		<columns>
@@ -32,7 +32,9 @@
 					<ObjectIdentifier title="{dataModel>artifact_id}"/>
 					<Text text="{dataModel>longitude}"/>
 					<Text text="{dataModel>latitude}"/>
-					<Text text="bfjdgbjg"/>
+					<Button text="Show artifact"
+						press="onPress">
+				</Button>
 				</cells>
 			</ColumnListItem>
 		</items>

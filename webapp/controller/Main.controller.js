@@ -87,7 +87,7 @@ sap.ui.define([
 			});
 		},
 
-		sendToMl: function () {
+		sendToMl: function (token, base64) {
 		
 			//Use the following format to send to ML (image name can always be 'ArtifactSignal.jpg')
 			//image is a variable
@@ -95,6 +95,41 @@ sap.ui.define([
 			//formData.append("files", image, "ArtifactSignal.jpg");
 			
 			//url to post on : '/ml-dest/api/v2/image/classification/models/HTF/versions/2'
+			var contentType = 'image/jpg';
+            var image = this.base64toBlob(base64, contentType);
+            var blobUrl = URL.createObjectURL(image);
+            var formData = new FormData();
+            formData.append("files", image, "ArtifactSignal.jpg");
+            var promise = new Promise(function (resolve, reject) {
+                $.ajax({
+                    type: "POST",
+                    url: "/ml-dest/api/v2/image/classification/models/HTF/versions/2",
+                    headers: {
+                        "Accept": "application/json",
+                        "APIKey": token,
+                        "Authorization": token
+                    },
+                    success: function (data) {
+                        resolve(data);
+                    },
+                    error: function (Error) {
+                        reject((Error));
+                    },
+                    contentType: false,
+                    async: false,
+                    data: formData,
+                    cache: false,
+                    processData: false
+                });
+            });
+            return Promise.resolve(promise).then(function (result) {
+                var obj = {
+                    "result": result,
+                    "image": blobUrl
+                };
+                return obj;
+            });
+
 			
 
 		},
@@ -123,8 +158,30 @@ sap.ui.define([
 				type: contentType
 			});
 			return blob;
+		},
+		
+		onPress: function(){
+			if (!this.pressDialog) {
+				this.pressDialog = new Dialog({
+					title: 'The artifact',
+					content: new Text({text: 'test'}),
+					beginButton: new Button({
+						text: 'Close',
+						press: function () {
+							this.pressDialog.close();
+						}.bind(this)
+					})
+				});
+
+				//to get access to the global model
+				this.getView().addDependent(this.pressDialog);
+			}
+
+			this.pressDialog.open();
 		}
 
 	});
+	
+	
 });
 

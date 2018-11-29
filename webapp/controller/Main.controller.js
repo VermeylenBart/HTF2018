@@ -18,6 +18,30 @@ sap.ui.define([
 		getIotData: function () {
 			// url to get the artifact signals of your device : 
 			// '/devices/XX/measures'  -> XX = your device id
+			console.log("get iot data");
+			var promise = new Promise(function (resolve, reject) {
+				$.ajax({
+					type: "GET",
+					url: "/devices/105/measures",
+					headers: "",
+					success: function (data) {
+						console.log(data);
+						resolve(data);
+					},
+					error: function (Error) {
+						reject((Error));
+					},
+					contentType: false,
+					async: true,
+					data: null,
+					cache: false,
+					processData: false
+				});
+			});
+
+			return Promise.resolve(promise).then(function (result) {
+				return "Bearer " + result.access_token;
+			});
 		},
 
 		groupData: function () {

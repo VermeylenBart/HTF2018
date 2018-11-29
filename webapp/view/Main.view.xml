@@ -4,7 +4,7 @@
 		<pages>
 			<Page title="Hack the future 2018">
 				<content>
-					
+					<mvc:XMLView viewName="com.flexso.HackTheFuture.view.Table"/>
 				</content>
 				<footer>
 					<Toolbar width="100%">

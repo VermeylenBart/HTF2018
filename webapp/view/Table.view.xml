@@ -1,0 +1,40 @@
+<mvc:View controllerName="com.flexso.HackTheFuture.controller.Main" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Table id="idProductsTable" inset="false" items="">
+		<headerToolbar>
+			<Toolbar>
+				<content>
+					<Title text="Products" level="H2"/>
+				</content>
+			</Toolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<Toolbar active="true">
+				<Label text="Wide range of available products"/>
+			</Toolbar>
+		</infoToolbar>
+		<columns>
+			<Column minScreenWidth="Desktop">
+				<Text text="Artefact ID"/>
+			</Column>
+			<Column minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Longitude"/>
+			</Column>
+			<Column minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Latitude"/>
+			</Column>
+			<Column minScreenWidth="Desktop" demandPopin="true">
+				<Text text="Artifact Signal"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier title="105"/>
+					<Text text="69"/>
+					<Text text="21"/>
+					<Text text="fhdvhsuifhqiuvhqihviqh"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>

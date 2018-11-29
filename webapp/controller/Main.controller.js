@@ -18,14 +18,13 @@ sap.ui.define([
 		getIotData: function () {
 			// url to get the artifact signals of your device : 
 			// '/devices/XX/measures'  -> XX = your device id
-			console.log("get iot data");
+			var me = this;
 			var promise = new Promise(function (resolve, reject) {
 				$.ajax({
 					type: "GET",
 					url: "/devices/105/measures",
 					headers: "",
 					success: function (data) {
-						console.log(data);
 						resolve(data);
 					},
 					error: function (Error) {
@@ -40,11 +39,23 @@ sap.ui.define([
 			});
 
 			return Promise.resolve(promise).then(function (result) {
+				me.groupData(result)
 				return "Bearer " + result.access_token;
 			});
 		},
 
-		groupData: function () {
+		groupData: function (iotData) {
+			var parsedData = [];
+			console.log(iotData);
+			for(var i = 0; i < iotData.length; i+=4){
+				parsedData.push({
+					artifact_id: iotData[i].measure.artifact_id,
+					longitude: iotData[i+1].measure.longitude,
+					latitude: iotData[i+2].measure.latitude,
+					artifact_signal: iotData[i+3].measure.artifact_signal
+				});
+			};
+			console.log(parsedData);
 		},
 
 		triggerML: function (oEvent) {
